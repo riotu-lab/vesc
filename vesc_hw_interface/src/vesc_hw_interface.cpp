@@ -218,7 +218,9 @@ void VescHwInterface::packetCallback(const std::shared_ptr<VescPacket const>& pa
     const double position_pulse = values->getPosition();
 
     // 3.0 represents the number of hall sensors
-    position_ = position_pulse / num_motor_pole_pairs_ / 3.0 * gear_ratio_ -
+//     position_ = position_pulse / num_motor_pole_pairs_ / 3.0 * gear_ratio_ -
+//                 servo_controller_.getZeroPosition();  // unit: rad or m
+    position_ = position_pulse / num_motor_pole_pairs_  * gear_ratio_ -
                 servo_controller_.getZeroPosition();  // unit: rad or m
 
     velocity_ = velocity_rpm / 60.0 * 2.0 * M_PI * gear_ratio_;  // unit: rad/s or m/s
